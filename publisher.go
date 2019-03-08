@@ -8,12 +8,12 @@ import (
 
 func main() {
 
-	ConnectionInfo := GetInfoForConnection()
-	opts := MQTT.NewClientOptions().AddBroker(ConnectionInfo.MqttBroker)
+	Connection := GetInfoForConnection()
+	opts := MQTT.NewClientOptions().AddBroker(Connection.MqttBroker)
 
 	opts.SetClientID("publisher")
-	opts.SetUsername(ConnectionInfo.UserName)
-	opts.SetPassword(ConnectionInfo.PassWord)
+	opts.SetUsername(Connection.UserName)
+	opts.SetPassword(Connection.PassWord)
 	client := MQTT.NewClient(opts)
 
 	fmt.Println("Connecting...")
@@ -22,7 +22,7 @@ func main() {
 	}
 
 	fmt.Println("Publish...")
-	token := client.Publish("light", 0, true, "{\"message\": 123}")
+	token := client.Publish("light", 0, true, "{\"message\": HelloWorld}")
 	token.Wait()
 
 	client.Disconnect(250)
