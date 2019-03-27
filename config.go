@@ -21,8 +21,9 @@ func GetInfoForConnection() ConnectionInfo {
 		log.Fatal("Error: can't open config.ini")
 	}
 
-	info.UserName = os.Getenv("USERNAME")
-	info.PassWord = os.Getenv("PASSWORD")
+	info.UserName = os.Getenv("MQTT_USERNAME")
+	info.PassWord = os.Getenv("MQTT_PASSWORD")
 	info.MqttBroker = os.Getenv("MQTT_BROKER")
+
 	return info
 }
